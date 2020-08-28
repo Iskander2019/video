@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show_Image</title>
+    <script type="text/javascript" src="../jQuery/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+
+    <p id="p"></p>
+    <img id="image" />
+    <script>
+        var im = "708.png";
+        var last_message_id = 0,
+            load_in_process = false;
+
+        function Load() {
+            if (!load_in_process) {
+                load_in_process = true;
+                $.post("Server_Video1.php", {
+                        p: "ajax",
+                        last: last_message_id
+                            //			version: version 
+                    },
+                    function(result) {
+                        //		    eval(result);
+                        console.log(result);
+                        //                      console.log("55555555");
+                        load_in_process = false;
+                        //                    document.getElementById("p").innerHTML = '<img src="../avatars/' + im + '"/>';
+                        img2 = 'data:image/gif;base64,R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAALAAAAAAQAA4AAARe8L1Ekyky67QZ1hLnjM5UUde0ECwLJoExKcppV0aCcGCmTIHEIUEqjgaORCMxIC6e0CcguWw6aFjsVMkkIr7g77ZKPJjPZqIyd7sJAgVGoEGv2xsBxqNgYPj/gAwXEQA7 width="16" height="14" alt="внедренная иконка папки"';
+                        document.getElementById("p").innerHTML = '<img src="' + img2 + ' "/>';
+                    });
+            }
+        }
+
+        var loadInterval = setInterval(Load, 100);
+    </script>
+    <img src="data:image/gif;base64,R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAALAAAAAAQAA4AAARe8L1Ekyky67QZ1hLnjM5UUde0ECwLJoExKcppV0aCcGCmTIHEIUEqjgaORCMxIC6e0CcguWw6aFjsVMkkIr7g77ZKPJjPZqIyd7sJAgVGoEGv2xsBxqNgYPj/gAwXEQA7"
+        width="16" height="14" alt="внедренная иконка папки" />
+    <img id="img3" alt="ВИДЕО" />
+
+
+</body>
+
+</html>

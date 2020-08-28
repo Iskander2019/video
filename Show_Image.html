@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show_Image</title>
+    <script type="text/javascript" src="../jQuery/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <p id="p"></p>
+
+    <script>
+       var i = 0;
+ //       var im = "708.png";
+        var last_message_id = 0,
+            load_in_process = false;
+
+        function Load() {
+
+            i++;
+            if (!load_in_process) {
+                load_in_process = true;
+                $.post("Server_Video.php", {
+                        p: "ajax",
+                        last: last_message_id
+                    },
+                    function(result) {              
+                        console.log(result);
+                        load_in_process = false;
+                        document.getElementById("countframe").innerText = result;
+                        $("#p").html("<img src='"+result+"'/>");
+                    });
+            }
+        }
+
+        
+        var loadInterval = setInterval(Load, 100);
+    </script>
+
+
+    <p id="countframe"></p>
+
+
+</body>
+
+</html>
